@@ -7,27 +7,20 @@ export default function HomePage({ data }) {
   const id = "1234";
   return (
     <div>
-      {/* <p>
-        <Link to={`/products/${id}`}>Go to products with Link</Link>
-      </p> */}
       <main>
         <p>bonjour</p>
         <div className="generalcarddisplay">
           {data.offers.map((offer) => {
             // console.log("OFFER>>>>>", offer);
-
             // return <p>{offer.product_name}</p>;
+
             return (
               <main>
                 <Offers offer={offer} key={offer._id} />
               </main>
             );
-            // return <p>{offer._id}</p>;
           })}
         </div>
-        {/* <p>
-          <Link to={`/products/${key}`}>Go to products with Link</Link>
-        </p> */}
       </main>
     </div>
   );

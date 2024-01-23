@@ -15,9 +15,6 @@ import Offers from "./assets/components/Offers";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
-  // const [offer, setOffer] = useState({});
-  // const [categoriesList, setCategoriesList] = useState([]);
-  // const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,15 +25,6 @@ function App() {
 
         // console.log("response >>>", response.data);
         setData(response.data);
-
-        // setOffer(response.data.offers);
-        // console.log(setOffer);
-        // -- Trie du tbleau des catégories pour ne garder que celle dont le tableau 'meals' possèdent des éléments
-        // const filteredTab = response.data.categories.filter(
-        //   (category) => category.meals.length > 0
-        // );
-
-        // setCategoriesList(filteredTab);
       } catch (error) {
         console.log("catch app.js>>>", error.response);
       }
@@ -46,8 +34,7 @@ function App() {
     fetchData();
   }, []);
 
-  // console.log("IIIICCCCCCCIIIIII>>>>>>", data);
-  // console.log("IIIICCCCCCCIIIIII>>>>>>", "bonjour");
+  // console.log("Test data">>>>>>", data);
 
   return (
     <>
@@ -72,30 +59,7 @@ function App() {
 
 export default App;
 
-{
-  /* <Router>
-        <Routes>
-          <Route path="/landing" element={<HomePage data={data} />}></Route>
-          <Route path="/products" element={<Products />}></Route>
-        </Routes>
-      </Router> */
-}
-{
-  /* {isLoading ? (
-        <p>Patientez</p>
-      ) : (
-        <main>
-          <div className="generalcarddisplay">
-            {data.offers.map((offer) => {
-              console.log(offer);
-              // return <p>{element.name}</p>;
-              return <Offers offer={offer} />;
-            })}
-          </div>
-        </main>
-      )} */
-}
-
+// COMPOSANT QUI EST OFFER.JSX
 // <main>
 //   <div>
 //     <div className="cardoffer">
@@ -127,3 +91,13 @@ export default App;
 //     </div>
 //   </div>
 // </main>
+
+// INTERESSANT A GARDER LIE A DELIVEROO
+// setOffer(response.data.offers);
+// console.log(setOffer);
+// -- Trie du tbleau des catégories pour ne garder que celle dont le tableau 'meals' possèdent des éléments
+// const filteredTab = response.data.categories.filter(
+//   (category) => category.meals.length > 0
+// );
+
+// setCategoriesList(filteredTab);

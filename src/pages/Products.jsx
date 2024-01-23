@@ -2,11 +2,6 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 export default function ProductPage({ data }) {
-  //   const [product, setProduct] = useState([]);
-  // -- 'useParams()' retourne tous les params de l'url
-  //   const params = useParams();
-  // console.log("params>>", params);
-
   // - Syntaxe avec destructuration
   const { id } = useParams();
   console.log("params id>>", id);
@@ -34,3 +29,8 @@ export default function ProductPage({ data }) {
     </main>
   );
 }
+
+//   const [product, setProduct] = useState([]);
+// -- 'useParams()' retourne tous les params de l'url
+//   const params = useParams();
+// console.log("params>>", params);
