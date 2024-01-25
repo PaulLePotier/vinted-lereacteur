@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 // import reactLogo from "./assets/react.svg";
 import "./App.css";
 // import viteLogo from "/vite.svg";
@@ -8,6 +9,8 @@ import axios from "axios";
 // IMPORT PAGES
 import HomePage from "./pages/HomePage";
 import Products from "./pages/Products";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
 
 // IMPORT COMPOSANT
 import Offers from "./assets/components/Offers";
@@ -44,11 +47,13 @@ function App() {
         <main>
           <Router>
             <Routes>
-              <Route path="/landing" element={<HomePage data={data} />}></Route>
+              <Route path="/" element={<HomePage data={data} />}></Route>
               <Route
                 path="/products/:id"
                 element={<Products data={data} />}
               ></Route>
+              <Route path="/signup" element={<Signup />}></Route>
+              <Route path="/login" element={<Signin />}></Route>
             </Routes>
           </Router>
         </main>

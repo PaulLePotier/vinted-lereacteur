@@ -2,11 +2,15 @@ import { Link } from "react-router-dom";
 
 const Offers = ({ offer }) => {
   return (
-    <main>
+    <main key={offer._id}>
       <div>
         <div className="cardoffer">
           <div className="userinfo">
-            <img className="userprofilpic" src="" alt="" />
+            <img
+              className="userprofilpic"
+              src={offer.owner.account.avatar?.secure_url}
+              alt=""
+            />
             <p className="ligthgrey">{offer.owner.account.username}</p>
           </div>
           <img

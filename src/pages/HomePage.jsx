@@ -9,13 +9,14 @@ export default function HomePage({ data }) {
     <div>
       <main>
         <p>bonjour</p>
+        <Link to="signup">Se connecter</Link>
         <div className="generalcarddisplay">
           {data.offers.map((offer) => {
             // console.log("OFFER>>>>>", offer);
             // return <p>{offer.product_name}</p>;
 
             return (
-              <main>
+              <main key={offer._id}>
                 <Offers offer={offer} key={offer._id} />
               </main>
             );
