@@ -4,7 +4,7 @@ import "../assets/style/Signup.css";
 import "../App.css";
 import Cookies from "js-cookie";
 
-// import axios from "axios";
+import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -12,6 +12,7 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [consent, setConsent] = useState(false);
   //   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
@@ -31,14 +32,15 @@ const Signup = () => {
                   email: email,
                   username: name,
                   password: password,
-                  newsletter: true,
+                  newsletter: consent,
                 }
               );
+              console.log(response);
               //   password.length < 7
               //     ? setErrorMessage("password trop court")
               //     : setErrorMessage("");
-              //   Cookies.set("userToken", response.data.token);
-              //   setToken(response.data.token);
+              Cookies.set("userToken", response.data.token);
+              // setToken(response.data.token);
               navigate("/");
             } catch (error) {
               alert(error.response);
@@ -72,12 +74,21 @@ const Signup = () => {
               setPassword(event.target.value);
             }}
           />
+          <input
+            type="checkbox"
+            onClick={() => {
+              console.log(!consent);
+              setConsent(!consent);
+            }}
+          />
+          <p>test</p>
           {/* {errorMessage} */}
           <button>S'inscire</button>
         </form>
         <Link to="/login">Se connecter ?</Link>
       </div>
       {/* {Cookies.get("userToken")} */}
+      {consent}
     </main>
   );
 };

@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import "../style/Offer.css";
 
 const Offers = ({ offer }) => {
   return (
-    <main key={offer._id}>
+    <main>
       <div>
         <div className="cardoffer">
           <div className="userinfo">
@@ -21,10 +22,10 @@ const Offers = ({ offer }) => {
           <div className="offerfirstdescription">
             <h1>{offer.product_price} €</h1>
             <h2>
-              {offer.product_details.map((detail) => {
+              {offer.product_details.map((detail, index) => {
                 // console.log(detail);
                 return (
-                  <div>
+                  <div key={"object" + index}>
                     <p className="ligthgrey">{detail.TAILLE}</p>
                     <p className="ligthgrey">{detail.MARQUE}</p>
                   </div>
@@ -32,7 +33,11 @@ const Offers = ({ offer }) => {
               })}
             </h2>
             <p>
-              <Link to={`/products/${offer._id}`}>Voir le produit</Link>
+              <Link
+                to={`/products/${offer._id}?marque=${offer.owner.account.username}`}
+              >
+                Voir le produit
+              </Link>
 
               {/* <Link to="/products">Voir le produit</Link> */}
             </p>

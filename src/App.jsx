@@ -41,23 +41,26 @@ function App() {
 
   return (
     <>
-      {isLoading ? (
-        <p>Patientez</p>
-      ) : (
-        <main>
-          <Router>
-            <Routes>
-              <Route path="/" element={<HomePage data={data} />}></Route>
-              <Route
-                path="/products/:id"
-                element={<Products data={data} />}
-              ></Route>
-              <Route path="/signup" element={<Signup />}></Route>
-              <Route path="/login" element={<Signin />}></Route>
-            </Routes>
-          </Router>
-        </main>
-      )}
+      <div>
+        {isLoading ? (
+          <p>Patientez</p>
+        ) : (
+          <main>
+            <Router>
+              <Routes>
+                <Route path="/" element={<HomePage data={data} />}></Route>
+                <Route
+                  path="/products/:id"
+                  // path={`products/${token ? token : "salut"}`}
+                  element={<Products data={data} />}
+                ></Route>
+                <Route path="/signup" element={<Signup />}></Route>
+                <Route path="/login" element={<Signin />}></Route>
+              </Routes>
+            </Router>
+          </main>
+        )}
+      </div>
     </>
   );
 }

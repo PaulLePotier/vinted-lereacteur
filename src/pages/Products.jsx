@@ -6,6 +6,9 @@ export default function ProductPage({ data }) {
   const { id } = useParams();
   console.log("params id>>", id);
 
+  const queryParams = new URLSearchParams(document.location.search);
+  const marque = queryParams.get("marque");
+
   //   console.log("DATA>>>", data.offers);
 
   const productID = data.offers.filter((offer) => offer._id === id);
@@ -22,6 +25,7 @@ export default function ProductPage({ data }) {
               <img src={element.product_image.secure_url} alt="" />
               <p>{element.product_name}</p>
               <p>ProductPage de l'ide {id}</p>
+              <p>{marque}</p>
             </div>
           );
         })}
