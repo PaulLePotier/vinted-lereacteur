@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../assets/style/Signin.css";
-import Header from "../assets/components/Header";
+import Cookies from "js-cookie";
+import "../assets/style/Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -26,8 +26,11 @@ const Login = () => {
               }
             );
             {
-              email !== "" ? navigate("/") : setErrorMessage("PAS DE MAIL");
+              email !== ""
+                ? Cookies.set("userToken") && navigate("/")
+                : setErrorMessage("PAS DE MAIL");
             }
+
             console.log("submit declenché");
           } catch (error) {
             alert(error.response);

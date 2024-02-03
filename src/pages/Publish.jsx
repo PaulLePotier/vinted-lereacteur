@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../assets/style/Sell.css";
-import Header from "../assets/components/Header";
+import "../assets/style/Publish.css";
 
 const Publish = ({ token }) => {
   const navigate = useNavigate();
@@ -15,9 +14,9 @@ const Publish = ({ token }) => {
   const [condition, setCondition] = useState("");
   const [city, setCity] = useState("");
   const [price, setPrice] = useState(0);
-  const [exchange, setExchange] = useState(false);
-  const [picture, setPicture] = useState(null);
-  const [preview, setPreview] = useState(null);
+  // const [exchange, setExchange] = useState(false);
+  // const [picture, setPicture] = useState(null);
+  // const [preview, setPreview] = useState(null);
 
   // const handleSubmit = async (event) => {
   //   event.preventDefault();

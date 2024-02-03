@@ -7,7 +7,6 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../assets/components/Header";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -46,7 +45,7 @@ const Signup = () => {
               // console.log(response.data.token);
               setToken(response.data.token);
 
-              navigate("/");
+              // navigate("/");
             } catch (error) {
               alert(error.response);
             }
@@ -93,7 +92,16 @@ const Signup = () => {
         <Link to="/login">Se connecter ?</Link>
       </div>
       {Cookies.get("userToken")}
-<p>{token</p>
+      <p>hello {token}</p>
+      <button
+        onClick={() => {
+          Cookies.remove("userToken");
+        }}
+      >
+        Supprimer le cookie
+      </button>
+      <p>{token}</p>
+
       {consent}
     </main>
   );

@@ -21,8 +21,6 @@ export default function ProductPage({ data }) {
   console.log("DATA>>>", productID);
   return (
     <main>
-      {/* <Header /> */}
-
       <div>
         {productID.map((element) => {
           // console.log("ELEMEMENT", element);

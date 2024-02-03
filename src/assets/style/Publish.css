@@ -1,0 +1,28 @@
+.productupload {
+  display: flex;
+}
+
+.productupload div {
+  width: 50%;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+/* PQ SI JE MET .productupload div nth child st() CA FAIT UN TRUC CHELOU */
+
+.productdetailupload :nth-child(2) {
+  height: 100px;
+}
+
+form input {
+  height: 20px;
+  background-color: lightblue;
+  border: none;
+}
+
+.productdetailupload {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  margin-left: 10px;
+  flex-direction: column;
+}

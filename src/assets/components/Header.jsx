@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import "../img/vintedlogo.png";
+import vintedlogo from "../img/vintedlogo.png";
+import "../style/Header.css";
 
 const Header = (token) => {
   return token ? (
     <header>
       <Link className="img" to="/">
-        <img src="../assets/img/vintedlogo.png" alt="" />{" "}
+        <img src={vintedlogo} alt="" />
       </Link>
 
       <input type="text" />

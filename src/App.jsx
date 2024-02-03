@@ -17,9 +17,13 @@ import Publish from "./pages/Publish";
 import Offers from "./assets/components/Offers";
 import Header from "./assets/components/Header";
 
+//IMPORT LE TOKEN
+// const [token, setToken] = useState("12");
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
+  const token = Cookies.get("userToken");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,9 +54,11 @@ function App() {
           <main>
             <Router>
               <Header />
-
               <Routes>
-                <Route path="/" element={<HomePage data={data} />}></Route>
+                <Route
+                  path="/"
+                  element={<HomePage data={data} token={token} />}
+                ></Route>
                 <Route
                   path="/products/:id"
                   // path={`products/${token ? token : "salut"}`}

@@ -1,24 +1,36 @@
 import { Link } from "react-router-dom";
 import Offers from "../assets/components/Offers";
-// import Header from "../assets/components/Header";
+
 import "../index.css";
 import "../App.css";
+import Cookies from "js-cookie";
 
 import "../assets/style/HomePage.css";
-import "../assets/img/vintedlogo.png";
-import Header from "../assets/components/Header";
+import vintedhero from "../assets/img/vintedhero.png";
 
-export default function HomePage({ data }) {
+export default function HomePage({ data, token }) {
   //   console.log("DATAA>>>", data);
-  const id = "1234";
 
+  // const token = Cookies.get("userToken");
   return (
     <div>
-      {/* FIN DU HEADER */}
-      {/* <p>{token}</p> */}
-      {/* {Cookies.get("userToken")} */}
+      {token ? <p>il y a un token</p> : <p>il y a pas de token</p>}
+      <button
+        onClick={() => {
+          Cookies.remove("userToken");
+        }}
+      >
+        Supprimer le cookie APP
+      </button>
+      {Cookies.get("userToken") !== "" ? (
+        <p>{Cookies.get("userToken")}</p>
+      ) : (
+        <p>NADA</p>
+      )}
+      {Cookies.get("userToken")}
+      <p>{token}</p>
       <div>
-        <img className="heroimg" src="../assets/img/vintedhero.png" alt="" />
+        <img className="vintedhero" src={vintedhero} alt="" />
       </div>
       <div>
         <img src="" alt="" />
