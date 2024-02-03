@@ -18,37 +18,47 @@ const Publish = ({ token }) => {
   // const [picture, setPicture] = useState(null);
   // const [preview, setPreview] = useState(null);
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
+  const handleSubmit = async (event) => async (event) => {
+    event.preventDefault();
+    try {
+      // FormData pour envoyer les fichiers via une requête
+      const formData = new FormData();
+      formData.append("title", title);
+      // PQ CA DOIT PAS ETRE EGALE A product_title qui est la clé de l'objet dans le back ?
+      formData.append("description", description);
+      formData.append("brand", brand);
+      formData.append("price", price);
+      formData.append("city", city);
+      formData.append("condition", condition);
+      formData.append("color", color);
+      formData.append("size", size);
 
-  //   try {
-  //     // FormData pour envoyer les fichiers via une requête
-  //     const formData = new FormData();
-  //     formData.append("title", title);
-  //     formData.append("image", image);
+      // Pour insérer plusieurs photos à la même clé du formData A AJOUTER AU MOMENT DES PHOTOS
+      // for (const key in images) {
+      //   if (Object.hasOwnProperty.call(images, key)) {
+      //     formData.append("images", images[key]);
+      //   }
+      // }
 
-  //     // Pour insérer plusieurs photos à la même clé du formData
-  //     for (const key in images) {
-  //       if (Object.hasOwnProperty.call(images, key)) {
-  //         formData.append("images", images[key]);
-  //       }
-  //     }
-
-  //     const { data } = await axios.post(
-  //     "http://localhost:3000/offer/publish",
-  //       formData,
-  //       {
-  //         headers: {
-  //           "Content-Type": "multipart/form-data",
-  //         },
-  //       }
-  //     );
-
-  //     console.log("data>>>", data);
-  //   } catch (error) {
-  //     console.log("catch>>>'", error);
-  //   }
-  // };
+      const { data } = await axios.post(
+        "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
+        // "http://localhost:3000/offer/publish",
+        formData,
+        {
+          headers: {
+            // AJOUTER TOKEN ICI
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      {
+        title !== "" ? navigate("/") : setErrorMessage("pas de titre");
+      }
+    } catch (error) {
+      alert(error.response);
+    }
+  };
 
   return token ? (
     <main>
@@ -67,51 +77,7 @@ const Publish = ({ token }) => {
           <p>Prix</p>
         </div>
         <div className="productdetailupload">
-          <form
-            onSubmit={async (event) => {
-              event.preventDefault();
-              try {
-                // FormData pour envoyer les fichiers via une requête
-                const formData = new FormData();
-                formData.append("title", title);
-                // PQ CA DOIT PAS ETRE EGALE A product_title qui est la clé de l'objet dans le back ?
-                formData.append("description", description);
-                formData.append("brand", brand);
-                formData.append("price", price);
-                formData.append("city", city);
-                formData.append("condition", condition);
-                formData.append("color", color);
-                formData.append("size", size);
-
-                // Pour insérer plusieurs photos à la même clé du formData A AJOUTER AU MOMENT DES PHOTOS
-                // for (const key in images) {
-                //   if (Object.hasOwnProperty.call(images, key)) {
-                //     formData.append("images", images[key]);
-                //   }
-                // }
-
-                const { data } = await axios.post(
-                  "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
-                  // "http://localhost:3000/offer/publish",
-                  formData,
-                  {
-                    headers: {
-                      // AJOUTER TOKEN ICI
-                      Authorization: `Bearer ${token}`,
-                      "Content-Type": "multipart/form-data",
-                    },
-                  }
-                );
-                {
-                  title !== ""
-                    ? navigate("/")
-                    : setErrorMessage("pas de titre");
-                }
-              } catch (error) {
-                alert(error.response);
-              }
-            }}
-          >
+          <form onSubmit={handleSubmit}>
             <input
               type="text"
               value={title}

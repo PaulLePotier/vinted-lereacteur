@@ -2,28 +2,35 @@ import { Link } from "react-router-dom";
 import vintedlogo from "../img/vintedlogo.png";
 import "../style/Header.css";
 
-const Header = ({ token }) => {
+const Header = ({ token, setToken }) => {
   // const token = Cookies.get("userToken");
   console.log(token);
   return token ? (
     <header>
-      <img src={vintedlogo} alt="" />
+      <Link className="img" to="/">
+        <img src={vintedlogo} alt="" />
+      </Link>
+
       <input type="text" />
       <label htmlFor="text"></label>
 
       <div>
-        <p
+        <button
           onClick={() => {
             Cookies.remove("userToken");
+            setToken("");
+            navigate("/");
+            console.log(token);
           }}
         >
-          Se deco
-        </p>
+          Deconnexion
+        </button>
+
         {/* <Link className="logbutton" to="login">
           Se deconnecter
         </Link> */}
 
-        <Link className="logbutton" to="publish">
+        <Link className="logbutton" to="/publish">
           vends
         </Link>
       </div>

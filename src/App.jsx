@@ -23,7 +23,7 @@ import Header from "./assets/components/Header";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
-  const token = Cookies.get("userToken");
+  const [token, setToken] = useState(Cookies.get("userToken") || "");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,7 +53,7 @@ function App() {
         ) : (
           <main>
             <Router>
-              <Header token={token} />
+              <Header token={token} setToken={setToken} />
               <Routes>
                 <Route
                   path="/"
@@ -64,8 +64,14 @@ function App() {
                   // path={`products/${token ? token : "salut"}`}
                   element={<Products data={data} />}
                 ></Route>
-                <Route path="/signup" element={<Signup />}></Route>
-                <Route path="/login" element={<Login />}></Route>
+                <Route
+                  path="/signup"
+                  element={<Signup setToken={setToken} />}
+                ></Route>
+                <Route
+                  path="/login"
+                  element={<Login setToken={setToken} />}
+                ></Route>
                 <Route path="/publish" element={<Publish />}></Route>
               </Routes>
             </Router>

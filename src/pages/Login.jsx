@@ -1,15 +1,17 @@
+import "../assets/style/Login.css";
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-import "../assets/style/Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+
   return (
     <div className="formulairesignup">
       <form
@@ -26,8 +28,9 @@ const Login = () => {
               }
             );
             {
+              // Cookies.get("userToken") &&
               email !== ""
-                ? Cookies.set("userToken") && navigate("/")
+                ? navigate("/") && Cookies.get("userToken")
                 : setErrorMessage("PAS DE MAIL");
             }
 
@@ -54,7 +57,7 @@ const Login = () => {
         />
         <button>Se connecter</button>
       </form>
-      -<Link to="/Signup"> Se créer un compte</Link>
+      <Link to="/Signup"> Se créer un compte</Link>
     </div>
   );
 };

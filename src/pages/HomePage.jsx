@@ -16,14 +16,6 @@ export default function HomePage({ data, token }) {
   console.log(token);
   return (
     <div>
-      <button
-        onClick={() => {
-          Cookies.remove("userToken");
-          navigate("/");
-        }}
-      >
-        Se deconnecter
-      </button>
       <p>{token}</p>
       {/* {Cookies.get("userToken")} */}
 
