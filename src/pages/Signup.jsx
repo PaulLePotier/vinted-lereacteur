@@ -44,8 +44,7 @@ const Signup = () => {
               Cookies.set("userToken", response.data.token);
               // console.log(response.data.token);
               setToken(response.data.token);
-
-              // navigate("/");
+              navigate("/");
             } catch (error) {
               alert(error.response);
             }
@@ -92,7 +91,7 @@ const Signup = () => {
         <Link to="/login">Se connecter ?</Link>
       </div>
       {Cookies.get("userToken")}
-      <p>hello {token}</p>
+      {token ? <p> {token}</p> : <p>pas de token</p>}
       <button
         onClick={() => {
           Cookies.remove("userToken");
@@ -101,8 +100,7 @@ const Signup = () => {
         Supprimer le cookie
       </button>
       <p>{token}</p>
-
-      {consent}
+      {/* {consent} */}
     </main>
   );
 };

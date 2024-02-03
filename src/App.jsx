@@ -53,7 +53,7 @@ function App() {
         ) : (
           <main>
             <Router>
-              <Header />
+              <Header token={token} />
               <Routes>
                 <Route
                   path="/"

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Offers from "../assets/components/Offers";
+import { useNavigate } from "react-router-dom";
 
 import "../index.css";
 import "../App.css";
@@ -9,26 +10,23 @@ import "../assets/style/HomePage.css";
 import vintedhero from "../assets/img/vintedhero.png";
 
 export default function HomePage({ data, token }) {
-  //   console.log("DATAA>>>", data);
+  const navigate = useNavigate();
 
-  // const token = Cookies.get("userToken");
+  //   console.log("DATAA>>>", data);
+  console.log(token);
   return (
     <div>
-      {token ? <p>il y a un token</p> : <p>il y a pas de token</p>}
       <button
         onClick={() => {
           Cookies.remove("userToken");
+          navigate("/");
         }}
       >
-        Supprimer le cookie APP
+        Se deconnecter
       </button>
-      {Cookies.get("userToken") !== "" ? (
-        <p>{Cookies.get("userToken")}</p>
-      ) : (
-        <p>NADA</p>
-      )}
-      {Cookies.get("userToken")}
       <p>{token}</p>
+      {/* {Cookies.get("userToken")} */}
+
       <div>
         <img className="vintedhero" src={vintedhero} alt="" />
       </div>
