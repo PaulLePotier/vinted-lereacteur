@@ -44,12 +44,13 @@ function App() {
   return (
     <>
       <div>
-        {/* <Header /> */}
         {isLoading ? (
           <p>Patientez</p>
         ) : (
           <main>
             <Router>
+              <Header />
+
               <Routes>
                 <Route path="/" element={<HomePage data={data} />}></Route>
                 <Route

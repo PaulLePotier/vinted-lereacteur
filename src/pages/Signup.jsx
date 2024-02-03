@@ -13,14 +13,13 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
   const [consent, setConsent] = useState(false);
   //   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   return (
     <main className="container">
-      {/* <Header /> */}
-
       <div className="formulairesignup">
         <h2>Création de compte</h2>
         <form
@@ -44,8 +43,9 @@ const Signup = () => {
               //     ? setErrorMessage("password trop court")
               //     : setErrorMessage("");
               Cookies.set("userToken", response.data.token);
-              console.log(response.data.token);
+              // console.log(response.data.token);
               setToken(response.data.token);
+
               navigate("/");
             } catch (error) {
               alert(error.response);
@@ -92,7 +92,8 @@ const Signup = () => {
         </form>
         <Link to="/login">Se connecter ?</Link>
       </div>
-      {/* {Cookies.get("userToken")} */}
+      {Cookies.get("userToken")}
+<p>{token</p>
       {consent}
     </main>
   );

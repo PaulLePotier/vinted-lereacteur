@@ -14,24 +14,9 @@ export default function HomePage({ data }) {
 
   return (
     <div>
-      {/* <header>
-        <img src="../assets/img/vintedlogo.png" alt="" />
-        <input type="text" />
-        <label htmlFor="text"></label>
-
-        <div>
-          <Link className="logbutton" to="signup">
-            Se connecter
-          </Link>
-          <Link className="logbutton" to="login">
-            s'inscrire
-          </Link>
-          <Link className="logbutton" to="sell">
-            vends
-          </Link>
-        </div>
-      </header> */}
       {/* FIN DU HEADER */}
+      {/* <p>{token}</p> */}
+      {/* {Cookies.get("userToken")} */}
       <div>
         <img className="heroimg" src="../assets/img/vintedhero.png" alt="" />
       </div>

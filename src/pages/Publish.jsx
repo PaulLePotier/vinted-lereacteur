@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../assets/style/Sell.css";
+import Header from "../assets/components/Header";
 
 const Publish = ({ token }) => {
   const navigate = useNavigate();
@@ -52,24 +53,6 @@ const Publish = ({ token }) => {
 
   return token ? (
     <main>
-      <Header />
-      <header>
-        <Link className="logbutton" to="/">
-          <img src="../assets/img/vintedlogo.png" alt="" />
-        </Link>
-
-        <input type="text" />
-        <label htmlFor="text"></label>
-        <div>
-          <Link className="logbutton" to="signup">
-            Se connecter
-          </Link>
-          <Link className="logbutton" to="login">
-            s'inscrire
-          </Link>
-        </div>
-      </header>
-      {/* FIN DU HEADER */}
       <div>
         <h1>Vends tes vetements</h1>
       </div>

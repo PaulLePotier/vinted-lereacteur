@@ -12,7 +12,6 @@ const Login = () => {
   const navigate = useNavigate();
   return (
     <div className="formulairesignup">
-      <Header />
       <form
         onSubmit={async (event) => {
           try {
