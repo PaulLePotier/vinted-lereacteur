@@ -1,20 +1,40 @@
 header {
-  background-color: blue;
+  background-color: white;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 100px;
+}
+
+header input {
+  width: 400px;
+  height: 30px;
 }
 
 header div {
   font-size: 16px;
 }
 
-header img {
-  width: 200px;
-}
+/* .headerbutton {
+  display: flex;
+  background-color: red;
+  gap: 15px;
+} */
+/* PQ LE GAP MARCHE PAS */
 
 .logbutton {
   border: 1px grey solid;
+  background-color: red;
+  padding: 10px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+header img {
+  margin-left: 20px;
+  width: 200px;
+  height: 40px;
 }
 
 .generalcarddisplay {
@@ -27,4 +47,10 @@ header img {
 
   width: 1348px;
   margin: 40px auto;
+}
+
+.heroimg {
+  height: 400px;
+  width: 100%;
+  background-color: aqua;
 }

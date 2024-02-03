@@ -10,10 +10,12 @@ import axios from "axios";
 import HomePage from "./pages/HomePage";
 import Products from "./pages/Products";
 import Signup from "./pages/Signup";
-import Signin from "./pages/Signin";
+import Login from "./pages/Login";
+import Publish from "./pages/Publish";
 
 // IMPORT COMPOSANT
 import Offers from "./assets/components/Offers";
+import Header from "./assets/components/Header";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,6 +44,7 @@ function App() {
   return (
     <>
       <div>
+        {/* <Header /> */}
         {isLoading ? (
           <p>Patientez</p>
         ) : (
@@ -55,7 +58,8 @@ function App() {
                   element={<Products data={data} />}
                 ></Route>
                 <Route path="/signup" element={<Signup />}></Route>
-                <Route path="/login" element={<Signin />}></Route>
+                <Route path="/login" element={<Login />}></Route>
+                <Route path="/publish" element={<Publish />}></Route>
               </Routes>
             </Router>
           </main>

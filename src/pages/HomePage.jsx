@@ -1,19 +1,24 @@
 import { Link } from "react-router-dom";
 import Offers from "../assets/components/Offers";
+// import Header from "../assets/components/Header";
+import "../index.css";
 import "../App.css";
+
 import "../assets/style/HomePage.css";
 import "../assets/img/vintedlogo.png";
+import Header from "../assets/components/Header";
 
 export default function HomePage({ data }) {
   //   console.log("DATAA>>>", data);
   const id = "1234";
+
   return (
     <div>
-      <header>
-        <p>HELLO</p>
-        <img src="vintedlogo.png" alt="" />
+      {/* <header>
+        <img src="../assets/img/vintedlogo.png" alt="" />
         <input type="text" />
         <label htmlFor="text"></label>
+
         <div>
           <Link className="logbutton" to="signup">
             Se connecter
@@ -21,11 +26,16 @@ export default function HomePage({ data }) {
           <Link className="logbutton" to="login">
             s'inscrire
           </Link>
+          <Link className="logbutton" to="sell">
+            vends
+          </Link>
         </div>
-      </header>
-
+      </header> */}
+      {/* FIN DU HEADER */}
       <div>
-        <p>conneire à ancrée</p>
+        <img className="heroimg" src="../assets/img/vintedhero.png" alt="" />
+      </div>
+      <div>
         <img src="" alt="" />
       </div>
       <div>

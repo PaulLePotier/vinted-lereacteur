@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Header from "../assets/components/Header";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -18,8 +19,10 @@ const Signup = () => {
 
   return (
     <main className="container">
+      {/* <Header /> */}
+
       <div className="formulairesignup">
-        <h2>Se connecter</h2>
+        <h2>Création de compte</h2>
         <form
           onSubmit={async (event) => {
             try {
@@ -28,6 +31,7 @@ const Signup = () => {
               console.log("onSubmit déclenché !");
               const response = await axios.post(
                 "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+                // "http://localhost:3000/signup",
                 {
                   email: email,
                   username: name,
@@ -40,7 +44,8 @@ const Signup = () => {
               //     ? setErrorMessage("password trop court")
               //     : setErrorMessage("");
               Cookies.set("userToken", response.data.token);
-              // setToken(response.data.token);
+              console.log(response.data.token);
+              setToken(response.data.token);
               navigate("/");
             } catch (error) {
               alert(error.response);

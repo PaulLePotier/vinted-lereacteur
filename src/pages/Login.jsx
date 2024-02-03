@@ -3,20 +3,24 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../assets/style/Signin.css";
+import Header from "../assets/components/Header";
 
-const Signin = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   return (
     <div className="formulairesignup">
+      <Header />
       <form
         onSubmit={async (event) => {
           try {
             event.preventDefault();
             const response = await axios.post(
               "https://lereacteur-vinted-api.herokuapp.com/user/login",
+              // "http://localhost:3000/user/login",
+
               {
                 email: email,
                 password: password,
@@ -43,14 +47,14 @@ const Signin = () => {
           type="password"
           value={password}
           onChange={(event) => {
-            setPassword(event.target.value);
+            setPassword(event.target.value.toString());
           }}
         />
         <button>Se connecter</button>
       </form>
-      -<Link to="/Signup"> Déjà un compte?</Link>
+      -<Link to="/Signup"> Se créer un compte</Link>
     </div>
   );
 };
 
-export default Signin;
+export default Login;
