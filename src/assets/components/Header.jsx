@@ -10,9 +10,9 @@ const Header = ({ token, setToken }) => {
       <Link className="img" to="/">
         <img src={vintedlogo} alt="" />
       </Link>
-
-      <input type="text" />
-      <label htmlFor="text"></label>
+      <p> {token}</p>
+      {/* <input type="text" />
+      <label htmlFor="text"></label> */}
 
       <div>
         <button
@@ -42,7 +42,7 @@ const Header = ({ token, setToken }) => {
       </Link>
       <input type="text" />
       <label htmlFor="text"></label>
-
+      {/* <p> {token}</p> */}
       <div>
         <Link className="logbutton" to="signup">
           s'inscrire

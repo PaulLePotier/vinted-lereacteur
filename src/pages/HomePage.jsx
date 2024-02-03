@@ -16,7 +16,6 @@ export default function HomePage({ data, token }) {
   console.log(token);
   return (
     <div>
-      <p>{token}</p>
       {/* {Cookies.get("userToken")} */}
 
       <div>
