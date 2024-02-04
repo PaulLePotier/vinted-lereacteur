@@ -12,13 +12,11 @@ import Products from "./pages/Products";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Publish from "./pages/Publish";
+import Payment from "./pages/Payment";
 
 // IMPORT COMPOSANT
 import Offers from "./assets/components/Offers";
 import Header from "./assets/components/Header";
-
-//IMPORT LE TOKEN
-// const [token, setToken] = useState("12");
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -75,6 +73,15 @@ function App() {
                 <Route
                   path="/publish"
                   element={<Publish token={token} />}
+                ></Route>
+                <Route
+                  path="/payment"
+                  element={
+                    <Payment />
+                    // <Elements stripe={stripePromise}>
+                    //   <CheckoutForm />
+                    // </Elements>
+                  }
                 ></Route>
               </Routes>
             </Router>

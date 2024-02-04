@@ -1,0 +1,19 @@
+.pay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payinfo {
+  border: 2px solid black;
+  width: 90%;
+  height: 40px;
+  padding-top: 10px;
+  /* ALIGN ITEM NE MARCHE PAS */
+}
+
+form button {
+  margin-top: 40px;
+  background-color: greenyellow;
+  width: 100%;
+}

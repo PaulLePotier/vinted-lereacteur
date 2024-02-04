@@ -67,7 +67,15 @@ export default function ProductPage({ data }) {
                     })}
                   </div>
                 </div>
-                <button>Acheter</button>
+                <Link
+                  to="/payment"
+                  state={{
+                    price: element.product_price,
+                    picture: element.product_image.secure_url,
+                  }}
+                >
+                  Acheter
+                </Link>
                 {/* <p>ProductPage de l'ide {id}</p>
                 <p>{marque}</p> */}
               </div>

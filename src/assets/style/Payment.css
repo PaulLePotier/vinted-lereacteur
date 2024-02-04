@@ -1,0 +1,18 @@
+.paymentcard {
+  width: 50%;
+  background-color: white;
+  margin: 40px auto;
+  border: lightblue 2px solid;
+}
+
+.productpaymentdetail {
+  display: flex;
+  margin-bottom: 40px;
+  text-align: right;
+  justify-content: space-between;
+  align-items: center;
+}
+
+img {
+  width: 200px;
+}
