@@ -1,8 +1,8 @@
+import "../assets/style/Publish.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../assets/style/Publish.css";
 
 const Publish = ({ token }) => {
   const navigate = useNavigate();
@@ -15,31 +15,37 @@ const Publish = ({ token }) => {
   const [city, setCity] = useState("");
   const [price, setPrice] = useState(0);
   // const [exchange, setExchange] = useState(false);
-  // const [picture, setPicture] = useState(null);
-  // const [preview, setPreview] = useState(null);
+  const [picture, setPicture] = useState(null);
+  const [preview, setPreview] = useState(null);
 
-  const handleSubmit = async (event) => async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // FormData pour envoyer les fichiers via une requête
+    const formData = new FormData();
+    formData.append("title", title);
+    // PQ CA DOIT PAS ETRE EGALE A product_title qui est la clé de l'objet dans le back ?
+    formData.append("description", description);
+    formData.append("brand", brand);
+    formData.append("price", price);
+    formData.append("city", city);
+    formData.append("condition", condition);
+    formData.append("color", color);
+    formData.append("size", size);
+    formData.append("picture", picture);
+
+    // Pour insérer plusieurs photos à la même clé du formData A AJOUTER AU MOMENT DES PHOTOS
+    // for (const key in images) {
+    //   if (Object.hasOwnProperty.call(images, key)) {
+    //     formData.append("images", images[key]);
+    //   }
+    // }
+
+    // pour visualiser le contenu de notre formData : (boucle for of)
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
     try {
-      // FormData pour envoyer les fichiers via une requête
-      const formData = new FormData();
-      formData.append("title", title);
-      // PQ CA DOIT PAS ETRE EGALE A product_title qui est la clé de l'objet dans le back ?
-      formData.append("description", description);
-      formData.append("brand", brand);
-      formData.append("price", price);
-      formData.append("city", city);
-      formData.append("condition", condition);
-      formData.append("color", color);
-      formData.append("size", size);
-
-      // Pour insérer plusieurs photos à la même clé du formData A AJOUTER AU MOMENT DES PHOTOS
-      // for (const key in images) {
-      //   if (Object.hasOwnProperty.call(images, key)) {
-      //     formData.append("images", images[key]);
-      //   }
-      // }
-
       const { data } = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
         // "http://localhost:3000/offer/publish",
@@ -52,9 +58,7 @@ const Publish = ({ token }) => {
           },
         }
       );
-      {
-        title !== "" ? navigate("/") : setErrorMessage("pas de titre");
-      }
+      console.log("result upload =>", data);
     } catch (error) {
       alert(error.response);
     }
@@ -75,6 +79,7 @@ const Publish = ({ token }) => {
           <p>Etat</p>
           <p>Lieu</p>
           <p>Prix</p>
+          <p>picture</p>
         </div>
         <div className="productdetailupload">
           <form onSubmit={handleSubmit}>
@@ -135,6 +140,16 @@ const Publish = ({ token }) => {
                 setPrice(event.target.value);
               }}
             />
+            <input
+              type="file"
+              onChange={(event) => {
+                // pour visualiser l'image : on crée un state preview dans lequel on envoi l'info suivante :
+                const objectUrl = URL.createObjectURL(event.target.files[0]);
+                setPreview(objectUrl);
+                setPicture(event.target.files[0]);
+              }}
+            />
+            {preview && <img src={preview} alt="preview-before-upload" />}
             <button>Valider</button>
           </form>
         </div>

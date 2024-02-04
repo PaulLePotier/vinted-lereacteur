@@ -32,6 +32,12 @@ header div {
   margin-right: 10px;
 }
 
+button {
+  background-color: white;
+  border: none;
+  margin-right: 10px;
+}
+
 header img {
   margin-left: 20px;
   width: 200px;

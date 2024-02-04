@@ -1,18 +1,21 @@
 import { Link } from "react-router-dom";
 import vintedlogo from "../img/vintedlogo.png";
 import "../style/Header.css";
-
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 const Header = ({ token, setToken }) => {
   // const token = Cookies.get("userToken");
+  const navigate = useNavigate();
+
   console.log(token);
   return token ? (
     <header>
       <Link className="img" to="/">
         <img src={vintedlogo} alt="" />
       </Link>
-      <p> {token}</p>
-      {/* <input type="text" />
-      <label htmlFor="text"></label> */}
+
+      <label htmlFor="searchbar"></label>
+      <input type="text" placeholder={token} id="searchbar" />
 
       <div>
         <button
@@ -31,7 +34,7 @@ const Header = ({ token, setToken }) => {
         </Link> */}
 
         <Link className="logbutton" to="/publish">
-          vends
+          Vendre un article
         </Link>
       </div>
     </header>

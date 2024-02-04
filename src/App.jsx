@@ -72,7 +72,10 @@ function App() {
                   path="/login"
                   element={<Login setToken={setToken} />}
                 ></Route>
-                <Route path="/publish" element={<Publish />}></Route>
+                <Route
+                  path="/publish"
+                  element={<Publish token={token} />}
+                ></Route>
               </Routes>
             </Router>
           </main>
