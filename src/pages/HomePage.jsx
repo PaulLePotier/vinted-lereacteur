@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import Offers from "../assets/components/Offers";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import "../index.css";
 import "../App.css";
@@ -9,11 +11,33 @@ import Cookies from "js-cookie";
 import "../assets/style/HomePage.css";
 import vintedhero from "../assets/img/vintedhero.png";
 
-export default function HomePage({ data, token }) {
+export default function HomePage() {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    console.log("starting to fetch");
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://lereacteur-vinted-api.herokuapp.com/offers"
+        );
+
+        // console.log("response >>>", response.data);
+        setData(response.data);
+      } catch (error) {
+        console.log("catch app.js>>>", error.response);
+      }
+
+      // setIsLoading(false);
+    };
+    fetchData();
+  }, []);
+
   const navigate = useNavigate();
 
   //   console.log("DATAA>>>", data);
-  console.log(token);
+  // console.log(token);
+  // On return un loader pendant le fetch des produits
+  if (!data) return <p>Patientez...</p>;
   return (
     <div>
       {/* {Cookies.get("userToken")} */}

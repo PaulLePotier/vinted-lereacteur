@@ -23,11 +23,13 @@ const CheckoutForm = () => {
     const response = await axios.post(
       "https://lereacteur-vinted-api.herokuapp.com/payment",
       {
-        stripeToken: stripeToken,
+        token: stripeToken,
+        title: "Le titre de lannonce",
+        amount: 10,
       }
     );
-    console.log("TOKEN DE STRIPE>>>>>", stripeToken);
-    console.log("reponse back =>", response.data);
+    // console.log("TOKEN DE STRIPE>>>>>", stripeToken);
+    // console.log("reponse back =>", response.data);
     if (response.data.status === "succeeded") {
       // actualiser l'affichage : le card Element ne doit apparaitre (on peut aussi rediriger l'utilisateur !)
       setCompleted(true);
@@ -46,6 +48,7 @@ const CheckoutForm = () => {
         <button>Valider paiement</button>
       </form>
       {errorMessage && <p>{errorMessage}</p>}
+      {completed && <p>Bravo le paiement a été validé</p>}
     </>
   );
 };

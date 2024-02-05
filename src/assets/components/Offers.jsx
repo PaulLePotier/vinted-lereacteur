@@ -4,9 +4,7 @@ import "../style/Offer.css";
 const Offers = ({ offer }) => {
   return (
     <main>
-      <Link
-        to={`/products/${offer._id}?marque=${offer.owner.account.username}`}
-      >
+      <Link to={`/products/${offer._id}`}>
         <div>
           <div className="cardoffer">
             <div className="userinfo">

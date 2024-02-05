@@ -19,66 +19,39 @@ import Offers from "./assets/components/Offers";
 import Header from "./assets/components/Header";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState([]);
   const [token, setToken] = useState(Cookies.get("userToken") || "");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers"
-        );
-
-        // console.log("response >>>", response.data);
-        setData(response.data);
-      } catch (error) {
-        console.log("catch app.js>>>", error.response);
-      }
-
-      setIsLoading(false);
-    };
-    fetchData();
-  }, []);
 
   // console.log("Test data">>>>>>", data);
 
   return (
     <>
       <div>
-        {isLoading ? (
-          <p>Patientez</p>
-        ) : (
-          <main>
-            <Router>
-              <Header token={token} setToken={setToken} />
-              <Routes>
-                <Route
-                  path="/"
-                  element={<HomePage data={data} token={token} />}
-                ></Route>
-                <Route
-                  path="/products/:id"
-                  // path={`products/${token ? token : "salut"}`}
-                  element={<Products data={data} />}
-                ></Route>
-                <Route
-                  path="/signup"
-                  element={<Signup setToken={setToken} />}
-                ></Route>{" "}
-                <Route
-                  path="/login"
-                  element={<Login setToken={setToken} />}
-                ></Route>
-                <Route
-                  path="/publish"
-                  element={<Publish token={token} />}
-                ></Route>
-                <Route path="/payment" element={<Payment />}></Route>
-              </Routes>
-            </Router>
-          </main>
-        )}
+        <main>
+          <Router>
+            <Header token={token} setToken={setToken} />
+            <Routes>
+              <Route path="/" element={<HomePage />}></Route>
+              <Route
+                path="/products/:id"
+                // path={`products/${token ? token : "salut"}`}
+                element={<Products />}
+              ></Route>
+              <Route
+                path="/signup"
+                element={<Signup setToken={setToken} />}
+              ></Route>{" "}
+              <Route
+                path="/login"
+                element={<Login setToken={setToken} />}
+              ></Route>
+              <Route
+                path="/publish"
+                element={<Publish token={token} />}
+              ></Route>
+              <Route path="/payment" element={<Payment />}></Route>
+            </Routes>
+          </Router>
+        </main>
       </div>
     </>
   );
