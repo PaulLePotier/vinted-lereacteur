@@ -1,30 +1,32 @@
-import { Link } from "react-router-dom";
-import Offers from "../assets/components/Offers";
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import "../index.css";
-import "../App.css";
-import Cookies from "js-cookie";
-
-import "../assets/style/HomePage.css";
+// Import de l'image pour le Hero
 import vintedhero from "../assets/img/vintedhero.png";
 
+// Import du composant Offers qui fait les cards de chaque produits
+import Offers from "../assets/components/Offers";
+
+// Import du style
+import "../index.css";
+import "../App.css";
+import "../assets/style/HomePage.css";
+
 export default function HomePage() {
+  // On définit data comme null
   const [data, setData] = useState(null);
   useEffect(() => {
-    console.log("starting to fetch");
+    //  On définit un fonction qui récupère la data des offres
     const fetchData = async () => {
       try {
+        // On définit une variable et on attribut à data la valeur de la response une fois done par axios
         const response = await axios.get(
           "https://lereacteur-vinted-api.herokuapp.com/offers"
         );
-
-        // console.log("response >>>", response.data);
+        //VERIF console.log("response >>>", response.data);
         setData(response.data);
       } catch (error) {
-        console.log("catch app.js>>>", error.response);
+        console.log("catch error homepage.jsx>>>", error.response);
       }
 
       // setIsLoading(false);
@@ -32,16 +34,10 @@ export default function HomePage() {
     fetchData();
   }, []);
 
-  const navigate = useNavigate();
-
-  //   console.log("DATAA>>>", data);
-  // console.log(token);
   // On return un loader pendant le fetch des produits
-  if (!data) return <p>Tu attends on a dit</p>;
+  if (!data) return <p>Patientez...</p>;
   return (
     <div>
-      {/* {Cookies.get("userToken")} */}
-
       <div>
         <img className="vintedhero" src={vintedhero} alt="" />
       </div>
@@ -51,12 +47,12 @@ export default function HomePage() {
       <div>
         <div className="generalcarddisplay">
           {data.offers.map((offer) => {
-            {
-              /* // console.log("OFFER>>>>>", offer);
-            // return <p>{offer.product_name}</p>; */
-            }
+            // console.log("VERIF Map element offer>>>>>", offer);
+
             return (
               <main key={offer._id}>
+                {/* Voir composant offer */}
+                {/* ON envoie les éléments offer qui sont des objects qui represente chaque produit */}
                 <Offers offer={offer} key={offer._id} />
               </main>
             );

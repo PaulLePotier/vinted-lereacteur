@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import "../style/Offer.css";
 
+// Composant qui affiche chaque card produit de la page HomePage.jsx
 const Offers = ({ offer }) => {
   return (
     <main>
+      {/* On veut envoyer un lien à la page Produit récupérant en params l'id du produit*/}
       <Link to={`/products/${offer._id}`}>
         <div>
           <div className="cardoffer">

@@ -1,24 +1,28 @@
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 import "../assets/style/Product.css";
+
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Header from "../assets/components/Header";
 import axios from "axios";
+
+// Pour récuperer les params envoyer dans l'URL depuis le composant Offers.jsx
+import { useParams } from "react-router-dom";
 
 export default function ProductPage() {
   const [product, setProduct] = useState(null);
-  // - Syntaxe avec destructuration
+  // Desctrucuration - on récupère l'id envoyer dans les params "/products/:id" : id de l'offer_id
   const { id } = useParams();
-  console.log("params id>>", id);
+  // VERIF console.log("Reception du params id de Offers.jsx>>", id);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
+        // On peut aussi faire {data} en destructuration de response.data
         const response = await axios.get(
+          // On get uniquement l'id de l'offer
           `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
         );
 
-        // console.log("response >>>", response.data);
+        // VERIF console.log("Products - axios - response.data >>>", response.data);
         setProduct(response.data);
       } catch (error) {
         console.log("catch app.js>>>", error.response);
@@ -29,15 +33,13 @@ export default function ProductPage() {
     fetchProduct();
   }, []);
 
-  const queryParams = new URLSearchParams(document.location.search);
-  const marque = queryParams.get("marque");
+  // PAS UTILE MAIS UTILE POUR ENVOYER DES QUERYS ICI - EXEMPLE
+  // const queryParams = new URLSearchParams(document.location.search);
+  // const marque = queryParams.get("marque");
 
-  //   console.log("DATA>>>", product.offers);
+  // VERIF console.log("Products - object product", product);
 
-  console.log("DATA FILTRE", product);
-  //   setProduct(filteredTab);
-
-  console.log("DATA>>>", product);
+  // Autre methode que d'utiliser un State isLoading ? <p>Patientez...</p> :
   if (!product) return <p>Patientez...</p>;
   return (
     <main>
@@ -51,7 +53,7 @@ export default function ProductPage() {
           <div className="productspeccard">
             <p className="productprice">{product.product_price}€</p>
             <br />
-
+            {/* Comme pour Publish.jsx pas idéal il faudrait faire des binomes Label /Input et revoir le css */}
             <div className="productspec">
               <div className="productspecdetails">
                 <p>MARQUE</p>
@@ -93,7 +95,8 @@ export default function ProductPage() {
             >
               Acheter
             </Link>
-            {/* <p>ProductPage de l'ide {id}</p>
+            {/* TEST Pour afficher les id et le test du query */}
+            {/* <p>ProductPage de l'id n°{id}</p>
                 <p>{marque}</p> */}
           </div>
         </div>
@@ -101,8 +104,3 @@ export default function ProductPage() {
     </main>
   );
 }
-
-//   const [product, setProduct] = useState([]);
-// -- 'useParams()' retourne tous les params de l'url
-//   const params = useParams();
-// console.log("params>>", params);

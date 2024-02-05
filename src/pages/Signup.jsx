@@ -1,23 +1,33 @@
-import "../assets/style/Signup.css";
-import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 import axios from "axios";
 import { useState } from "react";
+// On importe pour gérer les tokens utilisateurs
+import Cookies from "js-cookie";
+// On importe Link et useNavigate pour naviguer
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import "../assets/style/Signup.css";
 
 const Signup = ({ setToken }) => {
+  // On définit des states vides pour le formulaire d'inscription
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newsletter, setNewsletter] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  // On utilise useNavigate pour pouvoir directement rédiriger la personne si inscription OK
   const navigate = useNavigate();
 
+  // On définit la fonction qui va gérer l'envoie du formulaire au back
   const handleSubmit = async (event) => {
+    // Pour éviter que les inputs du formulaire disparaisse
     event.preventDefault();
 
     try {
+      // On s'assure qu'il y ai les champs requis pour envoyer au back - double verif
       if (username && email && password) {
+        // On destructure response.data en renommant "response" / response.data par {data}
         const { data } = await axios.post(
           "https://lereacteur-vinted-api.herokuapp.com/user/signup",
           {
@@ -28,21 +38,23 @@ const Signup = ({ setToken }) => {
           }
         );
 
-        // console.log("signupPage - response >>", data);
+        // VERIF console.log("Signup - Axios - response.data >>", data);
 
-        //--  Création du cookie
+        //Une fois qu'on est dans notre IF on set un cookie
         Cookies.set("userToken", data.token, { secure: true });
 
-        // -- Envoie du token au state
+        // On attribut ce token à notre State token
         setToken(data.token);
 
-        // -- Naviguer vers la page d'accueil
+        // On redirige la personne connecté vers la page HomePage
         navigate("/");
-      } else {
+      }
+      // SI les champs requis sont pas truthy alors on envoie un message d'erreur
+      else {
         setErrorMessage("Veuillez remplir tous les champs");
       }
     } catch (error) {
-      console.log("Signpage - catch >>>", error.response);
+      console.log("Signup - catch error >>>", error.response);
     }
   };
 
@@ -95,49 +107,19 @@ const Signup = ({ setToken }) => {
           <label htmlFor="newsletter">S'incrire à la newsletter</label>
 
           <button>S'inscrire</button>
-
+          {/* Si il y a un Error message alors on l'affiche en dessous du bouton */}
           {errorMessage && <p>{errorMessage}</p>}
         </form>
+        {/* On va à la page login si on est déjà inscrit */}
         <Link to="/login">Se connecter ?</Link>
       </div>
-      {Cookies.get("userToken")}
-      <button
-        onClick={() => {
-          Cookies.remove("userToken");
-        }}
-      >
-        Supprimer le cookie
-      </button>
     </main>
   );
 };
 
 export default Signup;
 
-// {async (event) => {
-//   try {
-//     //   Cookies.remove("userToken");
-//     event.preventDefault();
-//     console.log("onSubmit déclenché !");
-//     const response = await axios.post(
-//       "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-//       // "http://localhost:3000/signup",
-//       {
-//         email: email,
-//         username: username,
-//         password: password,
-//         newsletter: consent,
-//       }
-//     );
-//     console.log(response);
-//     //   password.length < 7
-//     //     ? setErrorMessage("password trop court")
-//     //     : setErrorMessage("");
-//     Cookies.set("userToken", response.data.token);
-//     // console.log(response.data.token);
-//     setToken(response.data.token);
-//     navigate("/");
-//   } catch (error) {
-//     alert(error.response);
-//   }
-// }}
+// SI ON VEUT AUSSI RAJOUTER UNE CONTRAINTE DE LONGUEUR DU MOT DE PASSE
+// password.length < 7
+// ? setErrorMessage("password trop court")
+// : setErrorMessage("");

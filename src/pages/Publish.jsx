@@ -14,7 +14,7 @@ const Publish = ({ token }) => {
   const [condition, setCondition] = useState("");
   const [city, setCity] = useState("");
   const [price, setPrice] = useState(0);
-  // const [exchange, setExchange] = useState(false);
+  // const [exchange, setExchange] = useState(false); SI ON VEUT FAIRE UN SWITHC : Ok pour échanger des produits.
   const [picture, setPicture] = useState(null);
   const [preview, setPreview] = useState(null);
 
@@ -23,8 +23,22 @@ const Publish = ({ token }) => {
 
     // FormData pour envoyer les fichiers via une requête
     const formData = new FormData();
+    //ATTENTION, "___" doit être égale à la requête du back
+    // COURS :
+    // {
+    //   "title": "Air Max 90",
+    //   "description": "Toutes neuves",
+    //   "price": 120,
+    //   "condition": "Neuf",
+    //   "city": "Paris",
+    //   "brand": "Nike",
+    //   "size": 44,
+    //   "color": "blue",
+    //   "picture": selectedFile // le fichier image sélectionné par l'utilisateur
+    // }
+
     formData.append("title", title);
-    // PQ CA DOIT PAS ETRE EGALE A product_title qui est la clé de l'objet dans le back ?
+
     formData.append("description", description);
     formData.append("brand", brand);
     formData.append("price", price);
@@ -34,41 +48,44 @@ const Publish = ({ token }) => {
     formData.append("size", size);
     formData.append("picture", picture);
 
-    // Pour insérer plusieurs photos à la même clé du formData A AJOUTER AU MOMENT DES PHOTOS
+    // POUR INFO COURS  - Pour insérer plusieurs photos à la même clé du formData A AJOUTER AU MOMENT DES PHOTOS
     // for (const key in images) {
     //   if (Object.hasOwnProperty.call(images, key)) {
     //     formData.append("images", images[key]);
     //   }
     // }
 
-    // pour visualiser le contenu de notre formData : (boucle for of)
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    // VERIF pour visualiser le contenu de notre formData : (boucle for of)
+    // for (let pair of formData.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
+
     try {
       const { data } = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
-        // "http://localhost:3000/offer/publish",
+        // "http://localhost:3000/offer/publish", FONCTIONNE MAIS J'AI PAS ENCORE GERER LES PICTURES
         formData,
         {
           headers: {
-            // AJOUTER TOKEN ICI
+            // Info du cours - pour envoyer le formdata au back
             Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
         }
       );
-      console.log("result upload =>", data);
+      // console.log("Publish - axios - response.data =>", data);
     } catch (error) {
       alert(error.response);
     }
   };
 
+  // Pas de raison en soit parce que on peut pas cliquer sur vendre si on a pas de token
   return token ? (
     <main>
       <div>
         <h1>Vends tes vetements</h1>
       </div>
+      {/* J'ai mal géré ici d'un point de vue CSS, vaut mieux faire des binomes balises Label/Input */}
       <div className="productupload">
         <div className="productdetailupload">
           <p>Titre</p>
@@ -136,7 +153,7 @@ const Publish = ({ token }) => {
               type="text"
               value={price}
               onChange={(event) => {
-                console.log(event.target.value);
+                //VERIF console.log(event.target.value);
                 setPrice(event.target.value);
               }}
             />
@@ -156,7 +173,7 @@ const Publish = ({ token }) => {
       </div>
     </main>
   ) : (
-    // les informations mise dans la props state peuvent récupérées grâce à useLocation dans le composant de destination (ici, LogIn)
+    // Pas besoin d'utiliser de useLocation pour le moment car dans la config actuel je peux pas accéder au bouton vendre si pas connecté
     <Navigate to="/login" />
   );
 };
