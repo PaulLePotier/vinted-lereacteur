@@ -20,9 +20,12 @@ const CheckoutForm = () => {
     // console.log("stripe token =>", stripeResponse.token.id);
     const stripeToken = stripeResponse.token.id;
 
-    const response = await axios.post("http://localhost:3000/payment", {
-      stripeToken: stripeToken,
-    });
+    const response = await axios.post(
+      "https://lereacteur-vinted-api.herokuapp.com/payment",
+      {
+        stripeToken: stripeToken,
+      }
+    );
     console.log("TOKEN DE STRIPE>>>>>", stripeToken);
     console.log("reponse back =>", response.data);
     if (response.data.status === "succeeded") {

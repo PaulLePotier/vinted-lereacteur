@@ -74,15 +74,7 @@ function App() {
                   path="/publish"
                   element={<Publish token={token} />}
                 ></Route>
-                <Route
-                  path="/payment"
-                  element={
-                    <Payment />
-                    // <Elements stripe={stripePromise}>
-                    //   <CheckoutForm />
-                    // </Elements>
-                  }
-                ></Route>
+                <Route path="/payment" element={<Payment />}></Route>
               </Routes>
             </Router>
           </main>
