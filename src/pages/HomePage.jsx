@@ -37,7 +37,7 @@ export default function HomePage() {
   //   console.log("DATAA>>>", data);
   // console.log(token);
   // On return un loader pendant le fetch des produits
-  if (!data) return <p>Patientez...</p>;
+  if (!data) return <p>Tu attends on a dit</p>;
   return (
     <div>
       {/* {Cookies.get("userToken")} */}
