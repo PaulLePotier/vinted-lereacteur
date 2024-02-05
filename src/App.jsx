@@ -17,6 +17,7 @@ import Offers from "./assets/components/Offers";
 import Header from "./assets/components/Header";
 
 function App() {
+  // On définit les tokens - ici pour le transfert pyramide
   const [token, setToken] = useState(Cookies.get("userToken") || "");
 
   return (

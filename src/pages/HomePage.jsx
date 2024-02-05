@@ -8,13 +8,13 @@ import vintedhero from "../assets/img/vintedhero.png";
 import Offers from "../assets/components/Offers";
 
 // Import du style
-import "../index.css";
-import "../App.css";
+
 import "../assets/style/HomePage.css";
 
 export default function HomePage() {
   // On définit data comme null
   const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     //  On définit un fonction qui récupère la data des offres
     const fetchData = async () => {
@@ -29,14 +29,14 @@ export default function HomePage() {
         console.log("catch error homepage.jsx>>>", error.response);
       }
 
-      // setIsLoading(false);
+      setIsLoading(false);
     };
     fetchData();
   }, []);
 
-  // On return un loader pendant le fetch des produits
-  if (!data) return <p>Patientez...</p>;
-  return (
+  return isLoading ? (
+    <p>Patientez...</p>
+  ) : (
     <div>
       <div>
         <img className="vintedhero" src={vintedhero} alt="" />
