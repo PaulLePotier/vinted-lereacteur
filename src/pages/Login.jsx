@@ -59,14 +59,18 @@ const Login = ({ setToken }) => {
   return (
     <div className="formulairesignup">
       <form onSubmit={handleSubmit}>
+        <label htmlFor="email">Email</label>
         <input
+          id="email"
           type="email"
           value={email}
           onChange={(event) => {
             setEmail(event.target.value);
           }}
         />
+        <label htmlFor="password">Mot de passe</label>
         <input
+          id="password"
           type="password"
           value={password}
           onChange={(event) => {
